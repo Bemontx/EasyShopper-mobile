@@ -21,6 +21,12 @@ export const routes: Routes = [
   },
 
   {
+    path: 'tabs',
+    loadComponent: () =>
+      import('./pages/tabs/tabs.page').then(m => m.TabsPage)
+  },
+
+  {
     path: 'products',
     loadComponent: () =>
       import('./pages/products/products.page').then(m => m.ProductsPage)
@@ -40,20 +46,9 @@ export const routes: Routes = [
 
   {
     path: 'confirmation',
-    loadComponent: () => 
+    loadComponent: () =>
       import('./pages/confirmation/confirmation.page')
         .then(m => m.ConfirmationPage)
-  },
-
-  {
-    path: 'tabs',
-    loadComponent: () => import('./pages/tabs/tabs.page').then( m => m.TabsPage)
-  },
-
-  {
-  path: 'tabs',
-  loadComponent: () =>
-    import('./pages/tabs/tabs.page').then(m => m.TabsPage)
   }
 
 ];
