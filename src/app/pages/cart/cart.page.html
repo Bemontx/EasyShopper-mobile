@@ -24,4 +24,20 @@
     Finalizar compra
   </ion-button>
 
+  <ion-footer>
+  <ion-toolbar>
+
+    <ion-title>
+      Total: $ {{ total }}
+    </ion-title>
+
+    <ion-button expand="block"
+      (click)="goToCheckout()">
+      Finalizar Compra
+    </ion-button>
+
+  </ion-toolbar>
+</ion-footer>
+
+
 </ion-content>

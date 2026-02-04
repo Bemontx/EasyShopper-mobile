@@ -44,7 +44,7 @@ export const routes: Routes = [
       import('./pages/confirmation/confirmation.page')
         .then(m => m.ConfirmationPage)
   },
-  
+
   {
     path: 'tabs',
     loadComponent: () => import('./pages/tabs/tabs.page').then( m => m.TabsPage)
@@ -54,12 +54,6 @@ export const routes: Routes = [
   path: 'tabs',
   loadComponent: () =>
     import('./pages/tabs/tabs.page').then(m => m.TabsPage)
-  },
-
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
   }
 
 ];
