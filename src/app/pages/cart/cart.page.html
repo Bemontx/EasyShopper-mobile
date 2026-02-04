@@ -18,26 +18,18 @@
 
   </ion-list>
 
-  <h2>Total: $ {{ total }}</h2>
+</ion-content>
 
-  <ion-button expand="block" (click)="checkout()">
-    Finalizar compra
-  </ion-button>
-
-  <ion-footer>
+<ion-footer>
   <ion-toolbar>
 
     <ion-title>
       Total: $ {{ total }}
     </ion-title>
 
-    <ion-button expand="block"
-      (click)="goToCheckout()">
-      Finalizar Compra
+    <ion-button expand="block" (click)="checkout()">
+      Finalizar compra
     </ion-button>
 
   </ion-toolbar>
 </ion-footer>
-
-
-</ion-content>
