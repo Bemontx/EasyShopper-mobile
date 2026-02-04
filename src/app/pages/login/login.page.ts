@@ -28,7 +28,7 @@ export class LoginPage {
       password: this.password
     }).subscribe({
       next: () => {
-        this.router.navigateByUrl('/products');
+        this.router.navigateByUrl('/tabs/products');
       },
       error: () => {
         alert('Credenciales incorrectas');
