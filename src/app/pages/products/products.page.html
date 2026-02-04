@@ -5,25 +5,21 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-
-  <ion-card *ngFor="let product of products">
-
-    <img [src]="product.imageUrl" />
+  <ion-card *ngFor="let product of products" class="product-card">
+    
+    <div class="image-container">
+      <img [src]="product.imageUrl" [alt]="product.name" />
+    </div>
 
     <ion-card-header>
       <ion-card-title>{{ product.name }}</ion-card-title>
-      <ion-card-subtitle>
-        $ {{ product.price }}
-      </ion-card-subtitle>
+      <ion-card-subtitle>$ {{ product.price }}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-button expand="block"
-        (click)="addToCart(product)">
+      <ion-button expand="block" (click)="addToCart(product)">
         Agregar al carrito
       </ion-button>
     </ion-card-content>
-
   </ion-card>
-
 </ion-content>
