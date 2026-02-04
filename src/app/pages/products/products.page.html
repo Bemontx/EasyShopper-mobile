@@ -1,13 +1,29 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>products</ion-title>
+    <ion-title>Productos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">products</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <ion-card *ngFor="let product of products">
+
+    <img [src]="product.imageUrl" />
+
+    <ion-card-header>
+      <ion-card-title>{{ product.name }}</ion-card-title>
+      <ion-card-subtitle>
+        $ {{ product.price }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button expand="block"
+        (click)="addToCart(product)">
+        Agregar al carrito
+      </ion-button>
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>

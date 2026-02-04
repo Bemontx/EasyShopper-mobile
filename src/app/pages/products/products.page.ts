@@ -1,20 +1,41 @@
 import { Component, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+
+import { ProductsService } from '../../services/products.service';
+import { Product } from 'src/app/models/models';
 
 @Component({
   selector: 'app-products',
-  templateUrl: './products.page.html',
-  styleUrls: ['./products.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule],
+  templateUrl: './products.page.html'
 })
 export class ProductsPage implements OnInit {
 
-  constructor() { }
+  products: Product[] = [];
+
+  constructor(
+    private productsService: ProductsService
+  ) {}
 
   ngOnInit() {
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.productsService.getProducts().subscribe({
+      next: (data) => {
+        this.products = data;
+      },
+      error: () => {
+        alert('Error cargando productos');
+      }
+    });
+  }
+
+  addToCart(product: Product) {
+    console.log('Producto agregado:', product);
   }
 
 }
