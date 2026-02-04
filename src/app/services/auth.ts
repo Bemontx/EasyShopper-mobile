@@ -17,15 +17,18 @@ export class AuthService {
 
   login(data: any) {
     return this.http.post<any>(`${this.apiUrl}/login`, data)
-      .pipe(
-        tap(res => {
-          localStorage.setItem('token', res.token);
-        })
-      );
+    .pipe(
+      tap(res => {
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('userId', res.id || res.userId); 
+        console.log('DEBUG AuthService: Sesión guardada correctamente');
+      })
+    );
   }
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
   }
 
   getToken() {
@@ -33,6 +36,8 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+    return !!token && !!userId;
   }
 }

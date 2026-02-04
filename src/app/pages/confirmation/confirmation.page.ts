@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmation',
@@ -11,9 +10,14 @@ import { Router } from '@angular/router';
 })
 export class ConfirmationPage {
 
-  constructor(private router: Router) {}
+  constructor(private navCtrl: NavController) {} 
 
   goHome() {
-    this.router.navigateByUrl('/products');
+    
+    const userId = localStorage.getItem('userId');
+    this.navCtrl.navigateRoot('/tabs/products', {
+      animated: true,
+      animationDirection: 'back' 
+    });
   }
 }

@@ -27,8 +27,8 @@ export class CheckoutPage implements OnInit {
   }
 
   confirmPurchase() {
-
-    const userId = localStorage.getItem('userId'); 
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
 
   if (!userId) {
     alert('Sesión expirada. Por favor, inicia sesión de nuevo.');
@@ -36,21 +36,18 @@ export class CheckoutPage implements OnInit {
     return;
   }
 
-  const order = {
-    userId: userId, 
-    totalAmount: this.total
-  };
+  const order = { userId: userId, totalAmount: this.total };
 
   this.ordersService.createOrder(order).subscribe({
     next: () => {
       this.cartService.clear();
+      
+      (document.activeElement as HTMLElement)?.blur();
       this.router.navigateByUrl('/confirmation');
     },
     error: (err) => {
-      console.error('Error al crear la orden:', err);
       alert('No se pudo procesar la compra. Intenta de nuevo.');
     }
   });
-
   }
 }

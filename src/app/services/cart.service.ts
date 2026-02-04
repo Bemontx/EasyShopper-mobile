@@ -37,6 +37,7 @@ export class CartService {
 
   clear() {
     this.items = [];
+    localStorage.removeItem('cart_items');
   }
 
   getTotal(): number {
