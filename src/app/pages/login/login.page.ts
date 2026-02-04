@@ -3,12 +3,14 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth'; 
 import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.page.html',
-  imports: [IonicModule, FormsModule]
+  imports: [IonicModule, FormsModule, CommonModule]
 })
 export class LoginPage {
 
