@@ -35,3 +35,17 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+/* Esto asegura que el área donde se cargan las páginas (outlet) 
+   permita que el contenido crezca y se desplace */
+ion-router-outlet {
+  height: 100%;
+  display: block;
+  overflow-y: auto; 
+}
+
+/* Evita que el body bloquee el movimiento en navegadores */
+html, body {
+  height: 100%;
+  overflow: auto !important;
+}
