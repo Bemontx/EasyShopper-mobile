@@ -28,15 +28,29 @@ export class CheckoutPage implements OnInit {
 
   confirmPurchase() {
 
-    const order = {
-      totalAmount: this.total
-    };
+    const userId = localStorage.getItem('userId'); 
 
-    this.ordersService.createOrder(order)
-      .subscribe(() => {
-        this.cartService.clear();
-        this.router.navigateByUrl('/confirmation');
-      });
+  if (!userId) {
+    alert('Sesión expirada. Por favor, inicia sesión de nuevo.');
+    this.router.navigateByUrl('/login');
+    return;
+  }
+
+  const order = {
+    userId: userId, 
+    totalAmount: this.total
+  };
+
+  this.ordersService.createOrder(order).subscribe({
+    next: () => {
+      this.cartService.clear();
+      this.router.navigateByUrl('/confirmation');
+    },
+    error: (err) => {
+      console.error('Error al crear la orden:', err);
+      alert('No se pudo procesar la compra. Intenta de nuevo.');
+    }
+  });
 
   }
 }

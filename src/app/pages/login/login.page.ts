@@ -22,17 +22,24 @@ export class LoginPage {
     private router: Router
   ) {}
 
-  login() {
-    this.authService.login({
-      email: this.email,
-      password: this.password
-    }).subscribe({
-      next: () => {
+  login() {this.authService.login({
+    email: this.email,
+    password: this.password
+  }).subscribe({
+    next: (res: any) => {
+      const userId = res.id || res.Id; 
+      
+      if (userId) {
+        localStorage.setItem('userId', userId); 
+        localStorage.setItem('token', res.token || res.Token);
         this.router.navigateByUrl('/tabs/products');
-      },
-      error: () => {
-        alert('Credenciales incorrectas');
+      } else {
+        console.error('El backend no envió el ID del usuario', res);
       }
+    },
+    error: (err) => {
+      alert('Credenciales incorrectas');
+    }
     });
   }
 }
