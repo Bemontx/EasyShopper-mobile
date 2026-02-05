@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class OrdersService {
 
   
-private apiUrl = 'https://localhost:7247/api/orders';
+private apiUrl = 'https://easyshopper-api-jeisson-aedzgxetg2gtefas.brazilsouth-01.azurewebsites.net/api/orders';
 
   constructor(private http: HttpClient) {}
 

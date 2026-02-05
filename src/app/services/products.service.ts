@@ -9,7 +9,7 @@ import { Product } from '../models/models';
 export class ProductsService {
 
   
-  private apiUrl = 'https://localhost:7247/api/products';
+  private apiUrl = 'https://easyshopper-api-jeisson-aedzgxetg2gtefas.brazilsouth-01.azurewebsites.net/api/products';
 
   constructor(private http: HttpClient) {}
 

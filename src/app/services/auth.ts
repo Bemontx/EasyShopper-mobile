@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   
-private apiUrl = 'https://localhost:7247/api/auth';
+private apiUrl = 'https://easyshopper-api-jeisson-aedzgxetg2gtefas.brazilsouth-01.azurewebsites.net/api/auth';
 
   constructor(private http: HttpClient) {}
 
