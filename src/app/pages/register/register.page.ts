@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth'; 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule,LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   standalone: true,
   selector: 'app-register',
   templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
   imports: [IonicModule, FormsModule]
 })
 export class RegisterPage {
@@ -18,22 +19,49 @@ export class RegisterPage {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController
   ) {}
 
-  register() {
+  async register() {
+    if (!this.name || !this.email || !this.password) {
+      this.showToast('Por favor, rellena todos los campos');
+      return;
+    }
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Creando cuenta...',
+      spinner: 'crescent'
+    });
+    await loading.present();
+
     this.authService.register({
       name: this.name,
       email: this.email,
       password: this.password
     }).subscribe({
-      next: () => {
-        alert('Usuario creado');
+      next: (res) => {
+        loading.dismiss();
+        this.showToast('¡Registro exitoso! Ya puedes iniciar sesión', 'success');
         this.router.navigateByUrl('/login');
       },
-      error: () => {
-        alert('Error al registrar');
+      error: (err) => {
+        loading.dismiss();
+        const msg = err.error || 'Error en el servidor';
+        this.showToast(msg, 'danger');
+        console.error('Error de registro:', err);
       }
     });
+  }
+
+  async showToast(message: string, color: string = 'dark') {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2000,
+      color,
+      position: 'bottom'
+    });
+    await toast.present();
   }
 }

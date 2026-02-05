@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'https://localhost:7247/api/auth';
+  
+private apiUrl = 'https://localhost:7247/api/auth';
 
   constructor(private http: HttpClient) {}
 
-  register(data: any) {
-    return this.http.post(`${this.apiUrl}/register`, data);
+  register(userData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, userData);
   }
 
   login(data: any) {

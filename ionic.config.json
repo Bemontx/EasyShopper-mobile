@@ -1,5 +1,7 @@
 {
   "name": "EasyShopperMobile",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular-standalone"
 }
