@@ -11,7 +11,6 @@ Frontend de la aplicación EasyShopper que permite a los usuarios navegar un cat
 - **Ionic Framework 7+**
 - **Angular 16+**
 - **TypeScript**
-- **Capacitor** (para compilación nativa)
 - **RxJS**
 - **Ionic Components**
 
